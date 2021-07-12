@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	constants "go_bot/src/const"
+	"go_bot/src/utils"
 	"log"
 	"os"
 	"os/signal"
-	"strings"
+	"regexp"
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
@@ -35,9 +37,8 @@ func main() {
 		fmt.Println("error:wss\n", err)
 		return
 	}
+	dg.UpdateGameStatus(1, "Test")
 	fmt.Println("BOT Running...")
-
-	//シグナル受け取り可にしてチャネル受け取りを待つ（受け取ったら終了）
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
@@ -45,6 +46,8 @@ func main() {
 }
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+	var utils utils.Utils
+
 	if m.Author.Bot {
 		return
 	}
@@ -55,12 +58,11 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	fmt.Println("< " + m.Content + " by " + nick)
 
-	if m.Content == "ああ言えば" {
-		s.ChannelMessageSend(m.ChannelID, "こう言う")
-		fmt.Println("> こう言う")
-	}
-	if strings.Contains(m.Content, "www") {
-		s.ChannelMessageSend(m.ChannelID, "lol")
-		fmt.Println("> lol")
+	// 持ち越しTL変換のマッチ
+	r := regexp.MustCompile(constants.CARRY_OVER_REGEX)
+	if r.MatchString(m.Content) {
+		msg := utils.Convert(m.Content)
+
+		s.ChannelMessageSend(m.ChannelID, msg)
 	}
 }
