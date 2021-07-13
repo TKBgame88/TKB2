@@ -36,7 +36,6 @@ func main() {
 		fmt.Println("error:wss\n", err)
 		return
 	}
-	dg.UpdateGameStatus(1, "Test")
 	fmt.Println("BOT Running...")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
