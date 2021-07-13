@@ -55,7 +55,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if constants.CARRY_OVER_REGEX.MatchString(m.Content) {
 		msg, sec := utils.Convert(m.Content)
 
-		desc := "```\n\n" + strconv.Itoa(sec) + "秒の持ち越しTLだ!\n" + msg + "```"
+		desc := "```\n" + strconv.Itoa(sec) + "秒の持ち越しTLだ!\n\n" + msg + "```"
 
 		s.ChannelMessageSend(m.ChannelID, desc)
 	}
