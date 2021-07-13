@@ -2,6 +2,8 @@
 
 ## Usage
 
+### main.go
+
 token := YOUR_TOKEN
 
 ## Contact
