@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	constants "go_bot/src/const"
 	"regexp"
 	"strconv"
@@ -12,7 +13,7 @@ import (
 
 type Utils struct{}
 
-func (t Utils) Convert(msg string) string {
+func (t Utils) Convert(msg string) (string, int) {
 
 	// 最初の改行の番目を取得
 	index := strings.Index(msg, "\n")
@@ -54,10 +55,10 @@ func (t Utils) Convert(msg string) string {
 				var _left, _ = strconv.Atoi(strings.Split(_h, ":")[0])
 				var _right, _ = strconv.Atoi(strings.Split(_h, ":")[1])
 
-				_t := time.Date(2021, 7, 13, _left, _right, 0, 0, time.UTC)
+				_t := time.Date(2021, 1, 1, _left, _right, 0, 0, time.UTC)
 				_newTime := _t.Add(-time.Duration(coTime) * time.Minute)
 				_newLeft := strconv.Itoa(_newTime.Hour())
-				_newRight := strconv.Itoa(_newTime.Minute())
+				_newRight := fmt.Sprintf("%02d", _newTime.Minute())
 
 				if (_newTime.Minute() == 0 && _newTime.Hour() == 0) || _newTime.Hour() >= 2 {
 					isAddFlag = false
@@ -71,5 +72,5 @@ func (t Utils) Convert(msg string) string {
 
 		}
 	}
-	return strings.Join(slice, "")
+	return strings.Join(slice, ""), coTime
 }
