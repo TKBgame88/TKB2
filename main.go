@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"regexp"
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
@@ -51,16 +50,9 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.Bot {
 		return
 	}
-	nick := m.Author.Username
-	member, err := s.State.Member(m.GuildID, m.Author.ID)
-	if err == nil && member.Nick != "" {
-		nick = member.Nick
-	}
-	fmt.Println("< " + m.Content + " by " + nick)
 
 	// 持ち越しTL変換のマッチ
-	r := regexp.MustCompile(constants.CARRY_OVER_REGEX)
-	if r.MatchString(m.Content) {
+	if constants.CARRY_OVER_REGEX.MatchString(m.Content) {
 		msg := utils.Convert(m.Content)
 
 		s.ChannelMessageSend(m.ChannelID, msg)
