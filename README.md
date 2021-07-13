@@ -1,4 +1,4 @@
-# go_bot
+# pricess_connect_lite_bot
 
 ## Usage
 
