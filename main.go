@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"strconv"
@@ -18,10 +17,12 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		fmt.Println(err)
 	}
-
-	token := os.Getenv("BOT_TOKEN")
+	token := ""
+	if os.Getenv("BOT_TOKEN") != "" {
+		token = os.Getenv("BOT_TOKEN")
+	}
 
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
