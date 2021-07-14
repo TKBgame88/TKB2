@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	constants "go_bot/src/const"
+	constants "pricess_connect_lite_bot/src/const"
 	"regexp"
 	"strconv"
 	"strings"

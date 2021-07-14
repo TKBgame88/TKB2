@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	constants "go_bot/src/const"
-	"go_bot/src/utils"
 	"log"
 	"os"
 	"os/signal"
 	"strconv"
 	"syscall"
+
+	constants "pricess_connect_lite_bot/src/const"
+	"pricess_connect_lite_bot/src/utils"
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"

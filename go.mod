@@ -1,4 +1,4 @@
-module go_bot
+module pricess_connect_lite_bot
 
 go 1.16
 
