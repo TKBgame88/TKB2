@@ -72,5 +72,5 @@ func (t Utils) Convert(msg string) (string, int) {
 
 		}
 	}
-	return strings.Join(slice, ""), coTime
+	return strings.Join(slice, ""), i
 }
