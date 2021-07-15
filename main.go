@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"strconv"
 	"syscall"
 
 	constants "pricess_connect_lite_bot/src/const"
@@ -55,10 +54,6 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// 持ち越しTL変換のマッチ
 	if constants.CARRY_OVER_REGEX.MatchString(m.Content) {
-		msg, sec := utils.Convert(m.Content)
-
-		desc := "```\n" + strconv.Itoa(sec) + "秒の持ち越しTLだ!\n\n" + msg + "```"
-
-		s.ChannelMessageSend(m.ChannelID, desc)
+		utils.Convert(m.Content, s, m)
 	}
 }

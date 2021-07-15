@@ -4,6 +4,8 @@
 
 ### main.go
 
+If you want to fork this repository and use
+
 token := YOUR_TOKEN
 
 ## Contact
