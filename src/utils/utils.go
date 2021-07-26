@@ -74,6 +74,7 @@ func (t Utils) Convert(msg string, s *discordgo.Session, m *discordgo.MessageCre
 				}
 
 			} else {
+				tl = tl + "\n"
 				slice = append(slice, tl)
 			}
 		}
