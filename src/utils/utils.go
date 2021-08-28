@@ -77,6 +77,9 @@ func (t Utils) Convert(msg string, s *discordgo.Session, m *discordgo.MessageCre
 				tl = tl + "\n"
 				slice = append(slice, tl)
 			}
+			if !isAddFlag {
+				break
+			}
 		}
 		if slice == nil {
 			desc = "```\n" + strconv.Itoa(i) + "秒では持ち越しTLが組めないぞ!" + "```"
