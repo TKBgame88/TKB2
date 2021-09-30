@@ -18,8 +18,8 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	token := ""
-	if os.Getenv("BOT_TOKEN") != "" {
+	token := "ODkzMTkzNjg4MzU5MDEwMzE1.YVX5cg.-_zKwryrDaF0tHkP1ltG2flgokQ"
+	if os.Getenv("BOT_TOKEN") != "ODkzMTkzNjg4MzU5MDEwMzE1.YVX5cg.-_zKwryrDaF0tHkP1ltG2flgokQ" {
 		token = os.Getenv("BOT_TOKEN")
 	}
 
